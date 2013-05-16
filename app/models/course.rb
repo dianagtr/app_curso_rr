@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
   attr_accessible :description, :name, :active, :start_date, :location
+  has_many :editions
   validates :name, :presence => true
   validates :active, :inclusion => [true, false]
 
