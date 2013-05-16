@@ -1,4 +1,4 @@
-<%= form_for(@edition) do |f| %>
+<%= form_for([@course, @edition]) do |f| %>
   <% if @edition.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@edition.errors.count, "error") %> prohibited this edition from being saved:</h2>
