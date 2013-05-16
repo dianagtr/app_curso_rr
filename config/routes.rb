@@ -1,8 +1,8 @@
 Curso::Application.routes.draw do
-  resources :editions
 
-
-  resources :courses
+  resources :courses do
+    resources :editions
+  end
 
 
   # The priority is based upon order of creation:
