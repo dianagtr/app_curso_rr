@@ -1,6 +1,5 @@
 class EditionsController < ApplicationController
-
-  before_filter :load_course
+  before_filter :load_course 
 
   # GET /editions
   # GET /editions.json
@@ -11,14 +10,6 @@ class EditionsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @editions }
     end
-  end
-
-  private
-
-    def load_parent
-      @course = Course.find(params[:course_id])
-    end
-
   end
 
   # GET /editions/1
@@ -55,7 +46,7 @@ class EditionsController < ApplicationController
 
     respond_to do |format|
       if @edition.save
-        format.html { redirect_to [@course, @edition], notice: 'Edition was successfully created.' }
+        format.html { redirect_to [@course,@edition], notice: 'Edition was successfully created.' }
         format.json { render json: @edition, status: :created, location: @edition }
       else
         format.html { render action: "new" }
@@ -71,7 +62,7 @@ class EditionsController < ApplicationController
 
     respond_to do |format|
       if @edition.update_attributes(params[:edition])
-        format.html { redirect_to [@course, @edition], notice: 'Edition was successfully updated.' }
+        format.html { redirect_to [@course,@edition], notice: 'Edition was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -83,12 +74,18 @@ class EditionsController < ApplicationController
   # DELETE /editions/1
   # DELETE /editions/1.json
   def destroy
-    @edition = @course.edition.find(params[:id])
+    @edition = @course.editions.find(params[:id])
     @edition.destroy
 
     respond_to do |format|
-      format.html { redirect_to course_editions_path(@course) }
+      format.html { redirect_to course_editions_url(@course) }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def load_course
+    @course = Course.find(params[:course_id])
   end
 end

@@ -1,12 +1,16 @@
+# encoding: utf-8
 class CreateEditions < ActiveRecord::Migration
+  class Edition < ActiveRecord::Base
+    attr_accesible :course_id, :location, :active, :start
+  end
   def up
     create_table :editions do |t|
       t.date :start
-      t.date :finish
+      t.date :finish # pensad por que no lo llamamos 'end'
       t.string :location
       t.boolean :active
       t.integer :seats
-      t.integer :price_in_cents
+      t.integer :price_in_cents # pensad por qué in_cents?
       t.references :course
 
       t.timestamps
@@ -54,6 +58,5 @@ class CreateEditions < ActiveRecord::Migration
       end
     end
     drop_table :editions
-    
   end
 end
