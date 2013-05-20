@@ -8,5 +8,12 @@ class Course < ActiveRecord::Base
   #  record.errors.add attr, "can't be future if active" if value < Date.today && record.active?
   #end
 
+  scope :filtered, lambda { |f|
+    if f.nil?
+      where({})
+    else
+      includes(:editions).where("editions.active = ?", f=='active')
+    end
+  }
   
 end
