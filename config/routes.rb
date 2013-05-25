@@ -1,5 +1,7 @@
 Curso::Application.routes.draw do
 
+  resources :users
+
   resources :courses do
     resources :editions
   end
