@@ -3,5 +3,3 @@ require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
 Curso::Application.initialize!
-
-config.gem "authlogic"
